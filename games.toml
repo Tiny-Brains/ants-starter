@@ -1,0 +1,17 @@
+# The games this checkout plays. `tinybrains` looks for `games.toml` in the working directory first,
+# so a clone needs no environment variable and no devops checkout.
+#
+# Ants resolves from a SIBLING CHECKOUT because no release has been cut yet -- the one thing here
+# that assumes a layout. When one exists this entry becomes the four pinned artifacts below and the
+# sibling requirement disappears. `tinybrains games` always reports which way it resolved.
+
+[games.ants]
+name = "Ants"
+path = "../ants"
+
+# repo      = "Tiny-Brains/ants"
+# release   = "v1.0.0"
+# component = { file = "tb-ants.wasm",      sha256 = "sha256:..." }
+# manifest  = { file = "cartridge.json",    sha256 = "sha256:..." }
+# viewer    = { file = "viz-dist.tgz",      sha256 = "sha256:..." }
+# reference = { file = "observations.json", sha256 = "sha256:..." }

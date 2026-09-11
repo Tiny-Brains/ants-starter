@@ -1,0 +1,4 @@
+# The platform's own training code, as a library: the teacher, the encoding, behaviour cloning
+# and the export. It pulls torch, numpy and onnx. Pin a commit when you want your run to
+# reproduce: tb-baselines @ git+https://github.com/Tiny-Brains/ants-baselines@<sha>
+tb-baselines @ git+https://github.com/Tiny-Brains/ants-baselines

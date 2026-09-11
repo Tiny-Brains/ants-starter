@@ -1,0 +1,11 @@
+{
+  "game": "ants",
+  "vars": { "max_turns": 300 },
+  "rows": [
+    { "id": "vs-nano-bc", "seed": 42, "preset": "standard", "seat_count": 2,
+      "seats": [
+        { "seat": 0, "weights": "../model.onnx", "adapter": "../adapter.json", "label": "mine" },
+        { "seat": 1, "weights": "../../drill/models/nano-bc/model.onnx", "adapter": "../../drill/models/nano-bc/adapter.json", "label": "nano-bc" }
+      ] }
+  ]
+}

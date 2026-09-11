@@ -1,0 +1,9 @@
+# Training output. The dataset is regenerable from a seed and 90 MB; a checkpoint is not an
+# artifact; the export directory is copied into the root, which is what ships.
+data/
+runs/
+out/
+# Replays from `tinybrains matches/*.json`.
+replays/
+__pycache__/
+.venv/

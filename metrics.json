@@ -1,0 +1,39 @@
+{
+  "class": "nano",
+  "size_metric_bytes": 6006,
+  "class_max_bytes": 8192,
+  "class_target_bytes": 5734,
+  "fill_of_cap": 0.7332,
+  "weights_zstd_bytes": 5612,
+  "adapter_zstd_bytes": 394,
+  "params": 2930,
+  "opset": 17,
+  "operators": [
+    "Cast",
+    "Concat",
+    "Constant",
+    "Conv",
+    "Relu",
+    "Slice"
+  ],
+  "adapter_ops_max": 245839,
+  "adapter_ops_budget": 1000000,
+  "infer_us_max": 2905,
+  "deadline_share_ms": 31.25,
+  "share_used": 0.093,
+  "target_fraction": 0.7,
+  "engine_digest": "sha256:9ba5d31e171b53ecdc4768941cf9baf8cefe4b4a70b726d7ae8d796c419803d7",
+  "evaluator_digest": "sha256:44cfc91cb1f20f9a4b46d742169c22f970a96801faa843416f4d6776c9b3c505",
+  "weights_hash": "sha256:17f9dfb7cd6bb1a4746cd5960a05765916bc775f5a37c9900ded0daac0a12f3a",
+  "adapter_hash": "sha256:9c022ff50c7210213afa4a88ffb56cd2dee188f99b949335a037bdc60ab2d468",
+  "arch": "Trunk",
+  "reach_cells": 15,
+  "dilations": [
+    [
+      1,
+      2,
+      4,
+      8
+    ]
+  ]
+}
