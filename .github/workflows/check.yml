@@ -4,7 +4,7 @@
 # to make is invisible until a ladder match loses to it, and a fixed seed on every commit is how
 # it becomes visible on the commit that caused it.
 #
-# The four checkouts are the pre-release cost. `actions/checkout` cannot write outside the
+# The three checkouts are the pre-release cost. `actions/checkout` cannot write outside the
 # workspace, so this repository is checked out as a subdirectory and its siblings beside it,
 # which is the layout `games.toml` expects. When Ants cuts a release and the CLI is installable
 # from git, all of this collapses to a checkout and a `cargo install --git`.
@@ -26,8 +26,6 @@ jobs:
         with: { repository: Tiny-Brains/ants, path: ants }
       - uses: actions/checkout@v4
         with: { repository: Tiny-Brains/devops, path: devops }
-      - uses: actions/checkout@v4
-        with: { repository: Tiny-Brains/axon, path: axon }
 
       - uses: dtolnay/rust-toolchain@stable
       - name: Install the CLI
@@ -36,7 +34,7 @@ jobs:
       # Admission's own two calls over the game's reference observations: the graph's operators
       # and shapes, the adapter's worst operation count against the budget, the slowest inference.
       - name: Check it the way admission will
-        run: tinybrains check model.onnx adapter.json
+        run: tinybrains check model.onnx manifest.json
 
       # A whole match through the real engine, so an adapter that returns but plays nothing is
       # caught here and not on the ladder.

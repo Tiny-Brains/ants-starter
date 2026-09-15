@@ -4,8 +4,8 @@
   "rows": [
     { "id": "vs-nano-bc", "seed": 42, "preset": "standard", "seat_count": 2,
       "seats": [
-        { "seat": 0, "weights": "../model.onnx", "adapter": "../adapter.json", "label": "mine" },
-        { "seat": 1, "weights": "../../drill/models/nano-bc/model.onnx", "adapter": "../../drill/models/nano-bc/adapter.json", "label": "nano-bc" }
+        { "seat": 0, "weights": "../model.onnx", "manifest": "../manifest.json", "label": "mine" },
+        { "seat": 1, "weights": "../../drill/models/nano-bc/model.onnx", "manifest": "../../drill/models/nano-bc/manifest.json", "label": "nano-bc" }
       ] }
   ]
 }

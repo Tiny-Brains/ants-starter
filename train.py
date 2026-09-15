@@ -7,12 +7,12 @@
     python train.py --skip-collect     # reuse data/teacher.jsonl.gz from a previous run
     python train.py --epochs 10 --seed 3
 
-It writes model.onnx, adapter.json, metrics.json and card.md into this directory, replacing the
+It writes model.onnx, manifest.json, metrics.json and card.md into this directory, replacing the
 ones that ship, and prints the platform's verdict on the way: the size metric, the class it
 measures into, the adapter's worst operation count, and the inference time.
 
 Everything here is tb_baselines (github.com/Tiny-Brains/ants-baselines): the scripted teacher, the
-seven-plane encoding rendered once for numpy and once as the adapter, behaviour cloning, and an
+seven-plane encoding rendered once for numpy and once as the manifest's adapter, behaviour cloning, and an
 export that runs `tinybrains check`. This file only strings its three commands together with this
 repository's paths, so nothing in it can drift from the recipe the baselines were made with.
 `tinybrains` has to be on PATH for the export: README.md says where it comes from.
@@ -28,7 +28,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-SHIPPED = ["model.onnx", "adapter.json", "metrics.json", "card.md"]
+SHIPPED = ["model.onnx", "manifest.json", "metrics.json", "card.md"]
 
 
 def run(*module_and_args: str) -> None:
@@ -72,7 +72,8 @@ def main() -> None:
     for name in SHIPPED:
         shutil.copyfile(out / name, HERE / name)
     print(f"\nWrote {', '.join(SHIPPED)} into {HERE}. Next: `tinybrains matches/self-play.json`, then "
-          "commit, tag a release with model.onnx and adapter.json attached, and submit it.")
+          "commit, tag a release with model.onnx and manifest.json attached, submit the two hashes, "
+          "and PUT the two files to the upload URLs the submission answers with.")
 
 
 if __name__ == "__main__":
