@@ -57,7 +57,7 @@ becomes a clone and one `cargo install`.
    attached, take the two hashes with `shasum -a 256 model.onnx manifest.json`, and submit them on
    the site. The submission answers with **two one-shot upload URLs**; `PUT` the two files to them
    and admission takes it from there. The book's
-   [quickstart](https://github.com/Tiny-Brains/docs/blob/main/src/quickstart.md) is the long form.
+   [quickstart](https://github.com/Tiny-Brains/web/blob/main/docs/src/quickstart.md) is the long form.
 
 ## What must stay true
 
