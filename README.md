@@ -33,9 +33,14 @@ The `tinybrains` CLI builds from source and reads the game from a checkout besid
 clones, once:
 
 ```sh
-git clone https://github.com/Tiny-Brains/ants          # games.toml resolves ../ants
+git clone https://github.com/Tiny-Brains/ants          # games.toml resolves ../ants/dist
 git clone https://github.com/Tiny-Brains/devops
 cargo install --path devops/cli
+
+# The cartridge is build output, not committed. Either build its image and copy /artifacts/ out --
+# the same tree, and the digest the platform plays -- or run ants/build.sh (and ants/viz/build.sh).
+docker build -t tinybrains/ants:dev ants
+id=$(docker create tinybrains/ants:dev) && docker cp "$id":/artifacts/. ants/dist && docker rm "$id"
 ```
 
 `matches/vs-nano-bc.json` also wants [drill](https://github.com/Tiny-Brains/drill) beside this

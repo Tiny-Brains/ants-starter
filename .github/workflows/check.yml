@@ -27,6 +27,15 @@ jobs:
       - uses: actions/checkout@v4
         with: { repository: Tiny-Brains/devops, path: devops }
 
+      # The cartridge is build output, not committed. Build its image once and copy /artifacts/ out
+      # to ../ants/dist, which is the layout games.toml resolves and the digest the platform plays.
+      - name: Build the cartridge
+        run: |
+          docker build -t tinybrains/ants:ci ../ants
+          id=$(docker create tinybrains/ants:ci)
+          docker cp "$id":/artifacts/. ../ants/dist
+          docker rm "$id"
+
       - uses: dtolnay/rust-toolchain@stable
       - name: Install the CLI
         run: cargo install --path ../devops/cli
