@@ -11,7 +11,7 @@ It writes model.onnx, manifest.json, metrics.json and card.md into this director
 ones that ship, and prints the platform's verdict on the way: the size metric, the class it
 measures into, the adapter's worst operation count, and the inference time.
 
-Everything here is tb_baselines (github.com/Tiny-Brains/ants-baselines): the scripted teacher, the
+Everything here is tb_baselines (github.com/Tiny-Brains/ants, under baselines/): the scripted teacher, the
 seven-plane encoding rendered once for numpy and once as the manifest's adapter, behaviour cloning, and an
 export that runs `tinybrains check`. This file only strings its three commands together with this
 repository's paths, so nothing in it can drift from the recipe the baselines were made with.

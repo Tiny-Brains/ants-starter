@@ -22,7 +22,7 @@ ladder takes it as a new entry.
 | `model.onnx` | The trained policy. Float16 initializers, cast to float32 at use. |
 | `manifest.json` | What the platform runs the graph under: the declared inputs and outputs, and one **adapter** expression per input that turns the observation into the tensor. Generated, never hand-edited. |
 | `metrics.json`, `card.md` | What the platform measures about the entry, and the numbers in words. |
-| `train.py` | The whole recipe as one command, on top of [ants-baselines](https://github.com/Tiny-Brains/ants-baselines). |
+| `train.py` | The whole recipe as one command, on top of [the baselines](https://github.com/Tiny-Brains/ants/tree/main/baselines). |
 | `matches/` | Two match files: the entry against itself, and against the platform's nano baseline. |
 | `games.toml` | Where the game comes from. A sibling checkout of `ants` until a release is cut. |
 | `.github/workflows/check.yml` | Runs `tinybrains check` and a match on every push, so a manifest change nobody meant is caught on the commit that made it. |
@@ -47,10 +47,10 @@ becomes a clone and one `cargo install`.
 1. **Play it.** `tinybrains matches/self-play.json`, then `tinybrains view replays/self-play.json`.
    The ants should move; that is the whole point of a starter over an untrained fixture.
 2. **Change something and retrain.** `train.py` takes `--class`, `--epochs`, `--seed`; the recipe
-   underneath is `tb_baselines`, whose [README](https://github.com/Tiny-Brains/ants-baselines) says
+   underneath is `tb_baselines`, whose [README](https://github.com/Tiny-Brains/ants/tree/main/baselines) says
    what each knob measured. Width, depth and float16 are the levers that move the one number that
    decides your class. A different encoding means a different adapter, and the manifest is generated
-   from the same code that trains — [that is the one test that matters](https://github.com/Tiny-Brains/ants-baselines#the-one-test-that-matters).
+   from the same code that trains — [that is the one test that matters](https://github.com/Tiny-Brains/ants/tree/main/baselines#the-one-test-that-matters).
 3. **Check it the way admission will.** `tinybrains check model.onnx manifest.json`. A pass is
    necessary and not sufficient: your machine decides no class.
 4. **Publish, submit, upload.** Commit, tag a release with `model.onnx` and `manifest.json`
@@ -63,7 +63,7 @@ becomes a clone and one `cargo install`.
 
 - **`manifest.json` is generated.** Editing it by hand is how the encoding the trainer saw and the
   encoding the ladder runs come apart, and nothing fails when they do: the rating is simply lower
-  than training promised. Change `planes.py` in ants-baselines and regenerate.
+  than training promised. Change `planes.py` in `ants/baselines` and regenerate.
 - **Nothing here is a rule.** Presets, budgets and deadlines come from the cartridge and are printed
   on every run; `max_turns` in a match file is the one local override, so a drill is short.
 - **The four files ship together.** A model and its manifest are hashed and measured as a pair —

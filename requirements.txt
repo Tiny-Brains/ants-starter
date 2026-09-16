@@ -1,4 +1,6 @@
 # The platform's own training code, as a library: the teacher, the encoding, behaviour cloning
-# and the export. It pulls torch, numpy and onnx. Pin a commit when you want your run to
-# reproduce: tb-baselines @ git+https://github.com/Tiny-Brains/ants-baselines@<sha>
-tb-baselines @ git+https://github.com/Tiny-Brains/ants-baselines
+# and the export. It pulls torch, numpy and onnx. It lives in the Ants repository, beside the rules it
+# trains against, so pip clones that and builds the `baselines/` subdirectory. Pin a commit when you
+# want your run to reproduce:
+#   tb-baselines @ git+https://github.com/Tiny-Brains/ants@<sha>#subdirectory=baselines
+tb-baselines @ git+https://github.com/Tiny-Brains/ants#subdirectory=baselines
