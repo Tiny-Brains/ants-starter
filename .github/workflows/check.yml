@@ -4,8 +4,9 @@
 # an adapter change nobody meant to make is invisible until a ladder match loses to it, and a fixed
 # seed on every commit is how it becomes visible on the commit that caused it.
 #
-# One checkout and one install. `games.toml` pins the Ants release, so the first `tinybrains` call
-# downloads the cartridge and checks it against the two digests there; nothing else is cloned.
+# One checkout and one download. `games.toml` pins the Ants release, so the first `tinybrains` call
+# downloads the cartridge and checks it against the two digests there; nothing else is cloned, and
+# nothing is compiled.
 name: check
 
 on: [push, pull_request]
@@ -16,9 +17,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: dtolnay/rust-toolchain@stable
+      # The newest CLI release, checked against that release's SHA256SUMS. To pin one, replace
+      # `latest/download` with `download/v<version>`.
       - name: Install the CLI
-        run: cargo install --locked --git https://github.com/Tiny-Brains/devops tinybrains
+        run: |
+          base=https://github.com/Tiny-Brains/cli/releases/latest/download
+          archive="tinybrains-$(uname -m)-unknown-linux-gnu.tar.gz"
+          cd "$RUNNER_TEMP"
+          curl -fsSLO "$base/$archive"
+          curl -fsSL "$base/SHA256SUMS" | grep " $archive\$" | sha256sum -c -
+          tar -xzf "$archive" tinybrains
+          echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
+          ./tinybrains --version
 
       # Admission's own two calls over the game's reference observations: the graph's operators
       # and shapes, the adapter's worst operation count against the budget, the slowest inference.

@@ -3,7 +3,8 @@
 A working TinyBrains entry you can submit unchanged, and the one command that retrains it.
 
 ```sh
-cargo install --locked --git https://github.com/Tiny-Brains/devops tinybrains   # once
+brew tap tiny-brains/cli https://github.com/Tiny-Brains/cli    # once
+brew install tiny-brains/cli/tinybrains                         # once
 git clone https://github.com/Tiny-Brains/ants-starter && cd ants-starter
 
 tinybrains check model.onnx manifest.json      # what admission will say
@@ -33,10 +34,12 @@ ladder takes it as a new entry.
 
 ## What you need
 
-A Rust toolchain for `tinybrains`, and this clone — **no other repository beside it**. The game is
-not in this repository and not built here: `games.toml` pins a release of the Ants cartridge by two
-digests, the archive's and the engine's, and the first command that needs it downloads it into
-`~/.cache/tinybrains/cartridges/` and refuses it unless both match. `python train.py` additionally
+`tinybrains` — Homebrew as above, or the archive for your platform from its
+[latest release](https://github.com/Tiny-Brains/cli/releases/latest) — and this clone: **no other
+repository beside it, and no Rust toolchain**. The game is not in this repository and not built
+here: `games.toml` pins a release of the Ants cartridge by two digests, the archive's and the
+engine's, and the first command that needs it downloads it into `~/.cache/tinybrains/cartridges/`
+and refuses it unless both match. `python train.py` additionally
 wants Python and `pip install -r requirements.txt`, which installs the baselines library from git.
 
 ## Make it yours
