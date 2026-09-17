@@ -2,7 +2,7 @@
   "game": "ants",
   "vars": { "max_turns": 300 },
   "rows": [
-    { "id": "self-play", "seed": 42, "preset": "standard", "seat_count": 2,
+    { "id": "self-play", "seed": 42, "preset": "open-2", "seat_count": 2,
       "seats": [
         { "seat": 0, "weights": "../model.onnx", "manifest": "../manifest.json", "label": "mine" },
         { "seat": 1, "weights": "../model.onnx", "manifest": "../manifest.json", "label": "mine-again" }
