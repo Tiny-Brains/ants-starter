@@ -5,7 +5,7 @@
 # reference observations and the viewer -- as one archive on a GitHub release of Tiny-Brains/ants.
 # `tinybrains` downloads it once into its cache and refuses it unless the archive hashes to
 # `artifacts.sha256` and the component inside to `engine`, which is the digest the ladder plays.
-# A new engine is a new release (`ants/tools/release.sh` prints this block) and a new block here.
+# A new engine is a new release (its notes print this block) and a new block here.
 #
 # To play a local cartridge build instead, point TINYBRAINS_REGISTRY at a registry whose entry is
 # `path = "<ants checkout>/dist"`. `tinybrains games` always reports which way it resolved.
