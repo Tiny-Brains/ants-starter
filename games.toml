@@ -1,19 +1,18 @@
 # The games this checkout plays. `tinybrains` looks for `games.toml` in the working directory first,
-# so a clone needs no environment variable and no devops checkout.
+# so a clone needs no environment variable and no other repository beside it.
 #
-# Ants resolves from a SIBLING CHECKOUT's build output because no release has been cut yet -- the
-# one thing here that assumes a layout. `../ants/dist` is what `ants/build.sh` writes, and the same
-# tree as the ants image's /artifacts/, so either fills it. When a release exists this entry becomes
-# the four pinned artifacts below and the sibling requirement disappears. `tinybrains games` always
-# reports which way it resolved.
+# Ants is a PINNED RELEASE: its artifact set -- the component, cartridge.json, the boards, the
+# reference observations and the viewer -- as one archive on a GitHub release of Tiny-Brains/ants.
+# `tinybrains` downloads it once into its cache and refuses it unless the archive hashes to
+# `artifacts.sha256` and the component inside to `engine`, which is the digest the ladder plays.
+# A new engine is a new release (`ants/tools/release.sh` prints this block) and a new block here.
+#
+# To play a local cartridge build instead, point TINYBRAINS_REGISTRY at a registry whose entry is
+# `path = "<ants checkout>/dist"`. `tinybrains games` always reports which way it resolved.
 
 [games.ants]
 name = "Ants"
-path = "../ants/dist"
-
-# repo      = "Tiny-Brains/ants"
-# release   = "v1.0.0"
-# component = { file = "tb-ants.wasm",      sha256 = "sha256:..." }
-# manifest  = { file = "cartridge.json",    sha256 = "sha256:..." }
-# viewer    = { file = "viz-dist.tgz",      sha256 = "sha256:..." }
-# reference = { file = "observations.json", sha256 = "sha256:..." }
+repo = "Tiny-Brains/ants"
+release = "engine-281a84f10d59"
+artifacts = { file = "ants-artifacts.tar.gz", sha256 = "sha256:44a1200c89a3c32d2ae20eaab56ca030a40e8e246334dd9fcfb1d9925d28f75d" }
+engine = "sha256:281a84f10d59c7b4f60e5a8a631c3e04c4ce2aad5e771bbe6fa640e34314941f"

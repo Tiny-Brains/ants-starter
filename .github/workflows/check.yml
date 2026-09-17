@@ -4,41 +4,21 @@
 # to make is invisible until a ladder match loses to it, and a fixed seed on every commit is how
 # it becomes visible on the commit that caused it.
 #
-# The three checkouts are the pre-release cost. `actions/checkout` cannot write outside the
-# workspace, so this repository is checked out as a subdirectory and its siblings beside it,
-# which is the layout `games.toml` expects. When Ants cuts a release and the CLI is installable
-# from git, all of this collapses to a checkout and a `cargo install --git`.
+# One checkout and one install. `games.toml` pins the Ants release, so the first `tinybrains` call
+# downloads the cartridge and checks it against the two digests there; nothing else is cloned.
 name: check
 
 on: [push, pull_request]
-
-defaults:
-  run:
-    working-directory: starter
 
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with: { path: starter }
-      - uses: actions/checkout@v4
-        with: { repository: Tiny-Brains/ants, path: ants }
-      - uses: actions/checkout@v4
-        with: { repository: Tiny-Brains/devops, path: devops }
-
-      # The cartridge is build output, not committed. Build its image once and copy /artifacts/ out
-      # to ../ants/dist, which is the layout games.toml resolves and the digest the platform plays.
-      - name: Build the cartridge
-        run: |
-          docker build -t tinybrains/ants:ci ../ants
-          id=$(docker create tinybrains/ants:ci)
-          docker cp "$id":/artifacts/. ../ants/dist
-          docker rm "$id"
 
       - uses: dtolnay/rust-toolchain@stable
       - name: Install the CLI
-        run: cargo install --path ../devops/cli
+        run: cargo install --locked --git https://github.com/Tiny-Brains/devops tinybrains
 
       # Admission's own two calls over the game's reference observations: the graph's operators
       # and shapes, the adapter's worst operation count against the budget, the slowest inference.
@@ -54,4 +34,4 @@ jobs:
         if: always()
         with:
           name: replays
-          path: starter/replays/
+          path: replays/

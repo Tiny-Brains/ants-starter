@@ -3,6 +3,9 @@
 A working TinyBrains entry you can submit unchanged, and the one command that retrains it.
 
 ```sh
+cargo install --locked --git https://github.com/Tiny-Brains/devops tinybrains   # once
+git clone https://github.com/Tiny-Brains/ants-starter && cd ants-starter
+
 tinybrains check model.onnx manifest.json      # what admission will say
 tinybrains matches/self-play.json              # play it against itself, through the real engine
 python train.py                                # retrain it: collect, clone, export -- about an hour
@@ -23,29 +26,17 @@ ladder takes it as a new entry.
 | `manifest.json` | What the platform runs the graph under: the declared inputs and outputs, and one **adapter** expression per input that turns the observation into the tensor. Generated, never hand-edited. |
 | `metrics.json`, `card.md` | What the platform measures about the entry, and the numbers in words. |
 | `train.py` | The whole recipe as one command, on top of [the baselines](https://github.com/Tiny-Brains/ants/tree/main/baselines). |
-| `matches/` | Two match files: the entry against itself, and against the platform's nano baseline. |
-| `games.toml` | Where the game comes from. A sibling checkout of `ants` until a release is cut. |
+| `matches/` | Two match files: the entry against itself, and against the platform's nano baseline, fetched by URL from a pinned commit of `ants/baselines`. |
+| `games.toml` | Where the game comes from: a pinned release of the Ants cartridge, downloaded once and checked against its digests. |
 | `.github/workflows/check.yml` | Runs `tinybrains check` and a match on every push, so a manifest change nobody meant is caught on the commit that made it. |
 
-## Until a release is cut
+## What you need
 
-The `tinybrains` CLI builds from source and reads the game from a checkout beside this one. Two
-clones, once:
-
-```sh
-git clone https://github.com/Tiny-Brains/ants          # games.toml resolves ../ants/dist
-git clone https://github.com/Tiny-Brains/devops
-cargo install --path devops/cli
-
-# The cartridge is build output, not committed. Either build its image and copy /artifacts/ out --
-# the same tree, and the digest the platform plays -- or run ants/build.sh (and ants/viz/build.sh).
-docker build -t tinybrains/ants:dev ants
-id=$(docker create tinybrains/ants:dev) && docker cp "$id":/artifacts/. ants/dist && docker rm "$id"
-```
-
-`matches/vs-nano-bc.json` also wants [drill](https://github.com/Tiny-Brains/drill) beside this
-directory, which carries the baseline's files. When the artifacts are published, all of this
-becomes a clone and one `cargo install`.
+A Rust toolchain for `tinybrains`, and this clone — **no other repository beside it**. The game is
+not in this repository and not built here: `games.toml` pins a release of the Ants cartridge by two
+digests, the archive's and the engine's, and the first command that needs it downloads it into
+`~/.cache/tinybrains/cartridges/` and refuses it unless both match. `python train.py` additionally
+wants Python and `pip install -r requirements.txt`, which installs the baselines library from git.
 
 ## Make it yours
 
