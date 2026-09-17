@@ -1,8 +1,8 @@
 # Check every push the way admission will, and play a match.
 #
-# Copied from drill's workflow. The habit it builds is the point: an adapter change nobody meant
-# to make is invisible until a ladder match loses to it, and a fixed seed on every commit is how
-# it becomes visible on the commit that caused it.
+# It stays with your entry when you make this repository yours. The habit it builds is the point:
+# an adapter change nobody meant to make is invisible until a ladder match loses to it, and a fixed
+# seed on every commit is how it becomes visible on the commit that caused it.
 #
 # One checkout and one install. `games.toml` pins the Ants release, so the first `tinybrains` call
 # downloads the cartridge and checks it against the two digests there; nothing else is cloned.
