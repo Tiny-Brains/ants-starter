@@ -46,7 +46,9 @@ wants Python and `pip install -r requirements.txt`, which installs the baselines
 
 1. **Play it.** `tinybrains matches/self-play.json`, then `tinybrains view replays/self-play.json`.
    The ants should move. `matches/vs-nano-bc.json` plays it against the platform's nano baseline.
-   To play another board or opponent, edit a match file — the book's
+   Both play `basic-tiny-2p`, one of the five basic boards the release ships (`tinybrains maps`); a
+   season's own boards are published on the site, and a match file names one by its path. To play
+   another board or opponent, edit a match file — the book's
    [match files](https://github.com/Tiny-Brains/web/blob/main/docs/src/models/testing.md#match-files)
    section lists every field.
 2. **Change something and retrain.** `train.py` takes `--class`, `--epochs`, `--seed`; the recipe
@@ -66,7 +68,7 @@ wants Python and `pip install -r requirements.txt`, which installs the baselines
 - **`manifest.json` is generated.** Editing it by hand is how the encoding the trainer saw and the
   encoding the ladder runs come apart, and nothing fails when they do: the rating is simply lower
   than training promised. Change `planes.py` in `ants/baselines` and regenerate.
-- **Nothing here is a rule.** Presets, budgets and deadlines come from the cartridge and are printed
+- **Nothing here is a rule.** Boards, budgets and deadlines come from the cartridge and are printed
   on every run; `max_turns` in a match file is the one local override, so a local match is short.
 - **The four files ship together.** A model and its manifest are hashed and measured as a pair —
   the weight class is the artifact's bytes plus the manifest's — and the card and metrics say what
