@@ -72,7 +72,7 @@ def main() -> None:
     for name in SHIPPED:
         shutil.copyfile(out / name, HERE / name)
     print(f"\nWrote {', '.join(SHIPPED)} into {HERE}. Next: `tinybrains matches/self-play.json`, then "
-          "commit, tag a release with model.onnx and manifest.json attached, submit the two hashes, "
+          "take the two hashes with `shasum -a 256 model.onnx manifest.json`, submit them on the site, "
           "and PUT the two files to the upload URLs the submission answers with.")
 
 

@@ -43,8 +43,9 @@ against are chosen and uploaded by its admins, and may be these or others.
 [latest release](https://github.com/Tiny-Brains/cli/releases/latest) — and this clone: **no other
 repository beside it, and no Rust toolchain**. The game is not in this repository and not built
 here: `games.toml` pins a release of the Ants cartridge by two digests, the archive's and the
-engine's, and the first command that needs it downloads it into `~/.cache/tinybrains/cartridges/`
-and refuses it unless both match. `python train.py` additionally
+engine's, and the first command that needs it downloads it into the CLI's cache
+(`~/.cache/tinybrains/` on Linux, `~/Library/Caches/tinybrains/` on macOS) and refuses it unless
+both match. `python train.py` additionally
 wants Python and `pip install -r requirements.txt`, which installs the baselines library from git.
 
 ## Make it yours

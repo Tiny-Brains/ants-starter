@@ -20,6 +20,6 @@ A micro-class Ants policy.
 Reproduce with `see README.md`.
 
 Inference time is measured on whatever machine ran the check and is **reported, never a gate**:
-there is no compute cap (devops decision 46). It is here because the turn deadline is what a graph
-too expensive to play runs into, and a seat's share of it is the WHOLE turn -- one `model_infer`
-call per seat, each with its own deadline (decision R7).
+there is no compute cap. It is here because the turn deadline is what a graph too expensive to
+play runs into, and a seat's share of it is the WHOLE turn -- one `model_infer` call per seat,
+each with its own deadline.
