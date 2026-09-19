@@ -13,6 +13,6 @@
 [games.ants]
 name = "Ants"
 repo = "Tiny-Brains/ants"
-release = "engine-df312c0458d9"
-artifacts = { file = "ants-artifacts.tar.gz", sha256 = "sha256:6a2a11aa53e3f580bf70416aa13ccd57486bbe7d6e1a690cd1e892b2876d247b" }
-engine = "sha256:df312c0458d9b7536eda10c11b3a73f8f4beb0559b4c0e00161099faf5dc0496"
+release = "engine-cd656bc84c1a"
+artifacts = { file = "ants-artifacts.tar.gz", sha256 = "sha256:290889f24482e565e32e1d6c470b305e3b1f38418df5b638a2b6e25323396ec6" }
+engine = "sha256:cd656bc84c1accec25106c035dece8cdac211e1e0f1a5aa6a2e7836c1cfc3bb4"
