@@ -5,8 +5,8 @@
     { "id": "vs-nano-bc", "seed": 42, "map": "basic-tiny-2p", "seat_count": 2,
       "seats": [
         { "seat": 0, "weights": "../model.onnx", "manifest": "../manifest.json", "label": "mine" },
-        { "seat": 1, "weights": "https://raw.githubusercontent.com/Tiny-Brains/ants/032232b85a326db0b4d67d9644e384008a28d4c0/baselines/models/nano-bc/model.onnx",
-          "manifest": "https://raw.githubusercontent.com/Tiny-Brains/ants/032232b85a326db0b4d67d9644e384008a28d4c0/baselines/models/nano-bc/manifest.json", "label": "nano-bc" }
+        { "seat": 1, "weights": "../models/nano-bc/model.onnx",
+          "manifest": "../models/nano-bc/manifest.json", "label": "nano-bc" }
       ] }
   ]
 }

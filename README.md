@@ -14,11 +14,15 @@ python train.py                                # retrain it: collect, clone, exp
 ```
 
 The entry is a **nano** class model — the smallest class the ladder runs — trained the way the
-platform's own baselines are trained: a scripted teacher plays, a small convolutional policy is
-cloned from its moves, and the export writes `model.onnx`, the `manifest.json` that describes it,
+models in `models/` were trained: a scripted teacher plays, a small convolutional policy is cloned
+from its moves, and the export writes `model.onnx`, the `manifest.json` that describes it,
 `metrics.json` with what the platform measures, and `card.md`, which is where the numbers are. It
-is not one of the baselines: it was trained with its own seed, so its weights are its own and the
-ladder takes it as a new entry.
+was trained with its own seed, so its weights are its own and the ladder takes it as a new entry.
+
+`models/` holds **three trained opponents to test against**: `nano-bc`, `micro-bc` (the same
+teacher distilled into the next class up) and `micro-percell` (a weak control that sees one cell).
+They are the only trained models the platform keeps anywhere; the baselines a season is played
+against are chosen and uploaded by its admins, and may be these or others.
 
 ## What is in the box
 
@@ -27,8 +31,9 @@ ladder takes it as a new entry.
 | `model.onnx` | The trained policy. Float16 initializers, cast to float32 at use. |
 | `manifest.json` | What the platform runs the graph under: the declared inputs and outputs, and one **adapter** expression per input that turns the observation into the tensor. Generated, never hand-edited. |
 | `metrics.json`, `card.md` | What the platform measures about the entry, and the numbers in words. |
-| `train.py` | The whole recipe as one command, on top of [the baselines](https://github.com/Tiny-Brains/ants/tree/main/baselines). |
-| `matches/` | Two match files: the entry against itself, and against the platform's nano baseline, fetched by URL from a pinned commit of `ants/baselines`. |
+| `train.py` | The whole recipe as one command, on top of [the baselines library](https://github.com/Tiny-Brains/ants/tree/main/baselines). |
+| `models/` | Three trained opponents, each a `model.onnx`, its `manifest.json`, `metrics.json` and `card.md`: `nano-bc`, `micro-bc` and `micro-percell`. |
+| `matches/` | Two match files: the entry against itself, and against `models/nano-bc`. Both play offline. |
 | `games.toml` | Where the game comes from: a pinned release of the Ants cartridge, downloaded once and checked against its digests. |
 | `.github/workflows/check.yml` | Runs `tinybrains check` and a match on every push, so a manifest change nobody meant is caught on the commit that made it. |
 
@@ -45,7 +50,8 @@ wants Python and `pip install -r requirements.txt`, which installs the baselines
 ## Make it yours
 
 1. **Play it.** `tinybrains matches/self-play.json`, then `tinybrains view replays/self-play.json`.
-   The ants should move. `matches/vs-nano-bc.json` plays it against the platform's nano baseline.
+   The ants should move. `matches/vs-nano-bc.json` plays it against `models/nano-bc`; point a seat
+   at `models/micro-bc` for a harder opponent.
    Both play `basic-tiny-2p`, one of the five basic boards the release ships (`tinybrains maps`); a
    season's own boards are published on the site, and a match file names one by its path. To play
    another board or opponent, edit a match file — the book's
