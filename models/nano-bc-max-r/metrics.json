@@ -1,0 +1,60 @@
+{
+  "class": "nano",
+  "size_metric_bytes": 13735,
+  "class_max_bytes": 16384,
+  "class_target_bytes": 11468,
+  "fill_of_cap": 0.8383,
+  "artifact_bytes": 12536,
+  "manifest_bytes": 1199,
+  "params": 3170,
+  "nodes": 52,
+  "opset": 17,
+  "operators": [
+    "Cast",
+    "Concat",
+    "Constant",
+    "Conv",
+    "Gather",
+    "Max",
+    "Relu",
+    "Slice"
+  ],
+  "adapter_ops_max": 208423,
+  "adapter_ops_budget": 1000000,
+  "infer_us_max": 11910,
+  "deadline_share_ms": 1000.0,
+  "share_used": 0.0119,
+  "target_fraction": 0.7,
+  "engine_digest": "sha256:8ebceb4a67ce8656f4eab53bd389905c1b9aecd4dcdc6576086d5baf31709554",
+  "weights_hash": "sha256:0765a4e242750e982d7268f829f2b1eb9d2fc082ea40a2bd273d25e369e0794d",
+  "manifest_hash": "sha256:e4641e8f6fa3d7da8bb65b998f1d33840e164c0c2e1768677437a64ff37256e7",
+  "memory": {
+    "bytes_at_max": 29760,
+    "bytes_at_min": 1152,
+    "cell_bytes": 2,
+    "cells_max": 14880,
+    "cells_min": 576,
+    "class": null,
+    "fixed_bytes": 0,
+    "reason": null,
+    "round_trip": {
+      "checked": 202,
+      "failed": 0,
+      "failing_case": null,
+      "reason": null
+    },
+    "verdict": null
+  },
+  "arch": "Trunk + max memory",
+  "memory_kind": "max",
+  "ant_memory": false,
+  "reach_cells": 15,
+  "dilations": [
+    [
+      1,
+      2,
+      4,
+      8
+    ]
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "game": "ants",
+  "vars": { "max_turns": 300 },
+  "rows": [
+    { "id": "vs-nano-bc-max-r", "seed": 42, "map": "basic-tiny-2p", "seat_count": 2,
+      "seats": [
+        { "seat": 0, "weights": "../model.onnx", "manifest": "../manifest.json", "label": "mine" },
+        { "seat": 1, "weights": "../models/nano-bc-max-r/model.onnx",
+          "manifest": "../models/nano-bc-max-r/manifest.json", "label": "nano-bc-max-r" }
+      ] }
+  ]
+}

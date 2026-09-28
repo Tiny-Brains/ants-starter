@@ -17,7 +17,11 @@ A nano-class Ants policy.
 
 
 
-Reproduce with `see README.md`.
+Reproduce with:
+
+```sh
+python train.py --class nano --epochs 5 --seed 1 --seat-turns 250000
+```
 
 Inference time is measured on whatever machine ran the check and is **reported, never a gate**:
 there is no compute cap. It is here because the turn deadline is what a graph too expensive to

@@ -17,7 +17,13 @@ A micro-class Ants policy.
 
 
 
-Reproduce with `see README.md`.
+Reproduce with:
+
+```sh
+python -m tb_baselines.collect --seat-turns 250000 --out data/teacher.jsonl.gz
+python -m tb_baselines.train.bc --class micro --data data/teacher.jsonl.gz --epochs 5 --out runs/micro-bc
+python -m tb_baselines.export --class micro --weights runs/micro-bc/best.pt --out models/micro-bc
+```
 
 Inference time is measured on whatever machine ran the check and is **reported, never a gate**:
 there is no compute cap. It is here because the turn deadline is what a graph too expensive to
